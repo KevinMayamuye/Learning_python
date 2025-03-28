@@ -10,10 +10,9 @@ class ContactBookGUI:
         master.geometry("800x600")
         master.configure(bg='#f0f0f0')
 
-        self.filename = "contacts.txt"  # File for storing contacts
+        self.filename = "contacts.txt" 
         self.contacts = self.load_contacts()
 
-        # Create UI Components
         self.create_widgets()   
 
     def load_contacts(self):
@@ -31,7 +30,6 @@ class ContactBookGUI:
 
     def create_widgets(self):
         # Frame for buttons
-
         button_frame = tk.Frame(self.master, bg='#f0f0f0')
         button_frame.pack(pady=10)
 
@@ -54,7 +52,7 @@ class ContactBookGUI:
         self.tree = ttk.Treeview(self.master, columns=('Name', 'Phone', 'Email', 'Address'), show='headings')
         self.tree.pack(padx=10, pady=10, expand=True, fill='both')
 
-        # Define headings
+        # Defining the headings
         headings = [
             ('Name', 200),
             ('Phone', 150),
@@ -66,10 +64,10 @@ class ContactBookGUI:
             self.tree.heading(heading, text=heading)
             self.tree.column(heading, width=width, anchor='center')
 
-        # Populate initial contacts
         self.update_contact_view()
 
     def add_contact(self):
+        
         # Create a new window for adding contact
         add_window = tk.Toplevel(self.master)
         add_window.title("Add New Contact")
@@ -118,7 +116,6 @@ class ContactBookGUI:
         save_btn.pack(pady=10)
 
     def view_contacts(self):
-        # This method is already handled by the Treeview update
         pass
 
     def update_contact_view(self):
@@ -127,7 +124,7 @@ class ContactBookGUI:
         for i in self.tree.get_children():
             self.tree.delete(i)
 
-        # Populate with current contacts
+        # Fill with current contacts
         for name, details in self.contacts.items():
             self.tree.insert('', 'end', values=(
                 name, 
